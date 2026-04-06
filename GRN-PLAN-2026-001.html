@@ -1,0 +1,875 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GRN-PLAN-2026-001 — Documento de Planificación Técnica | Greenery Productions Inc.</title>
+<style>
+:root{--gd:#154518;--gc:#EAFFDD;--gl:#CDE310;--gb:#54C048;--gm:#38B73E;--bg:#F5FFF0;--bw:#FFFFFF;--bl:#D4EDDA;--td:#1A1A1A;--tm:#5A6B5A}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Segoe UI',Arial,sans-serif;color:var(--td);background:#E8E8E8;line-height:1.65}
+.doc{max-width:960px;margin:30px auto;background:var(--bw);box-shadow:0 4px 20px rgba(0,0,0,.12)}
+.hdr{background:linear-gradient(135deg,#154518 0%,#1E5C22 100%);color:var(--gc);padding:40px 50px 30px;border-bottom:4px solid var(--gb)}
+.hdr-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:20px}
+.logo{display:flex;align-items:center;gap:14px}
+.logo-i{width:52px;height:52px;border-radius:13px;background:linear-gradient(135deg,var(--gl),var(--gb));display:flex;align-items:center;justify-content:center;font-size:26px;font-weight:800;color:var(--gd)}
+.logo-t h1{font-size:20px;font-weight:800;letter-spacing:4px;color:var(--gc)}
+.logo-t .tag{font-size:9px;letter-spacing:5px;opacity:.7}
+.dbadge{background:rgba(205,227,16,.15);border:1px solid rgba(205,227,16,.3);border-radius:8px;padding:8px 16px;text-align:right}
+.dbadge .dn{font-size:14px;font-weight:700;color:var(--gl)}
+.dbadge .dt{font-size:10px;opacity:.8}
+.htitle{font-size:24px;font-weight:700;color:#fff;margin-bottom:4px}
+.hsub{font-size:13px;opacity:.8}
+.hmeta{display:flex;gap:28px;margin-top:18px;padding-top:14px;border-top:1px solid rgba(234,255,221,.15);font-size:12px;flex-wrap:wrap}
+.hmeta div{display:flex;flex-direction:column;gap:2px}
+.hmeta .lb{opacity:.6;font-size:10px;text-transform:uppercase;letter-spacing:1px}
+.hmeta .vl{font-weight:600}
+.cnt{padding:40px 50px}
+.sec{margin-bottom:40px}
+.stitle{font-size:18px;font-weight:700;color:var(--gd);border-left:4px solid var(--gb);padding-left:16px;margin-bottom:16px}
+.stitle2{font-size:15px;font-weight:600;color:var(--gd);margin:20px 0 10px}
+p,.desc{margin-bottom:12px;font-size:14px}
+.muted{color:var(--tm);font-size:13px}
+table{width:100%;border-collapse:collapse;margin:14px 0;font-size:13px}
+thead th{background:var(--gd);color:var(--gc);padding:10px 12px;text-align:left;font-weight:600;font-size:12px;text-transform:uppercase;letter-spacing:.5px}
+tbody td{padding:9px 12px;border-bottom:1px solid var(--bl);vertical-align:top}
+tbody tr:nth-child(even){background:var(--bg)}
+.card{background:var(--bg);border:1px solid var(--bl);border-radius:8px;padding:18px;margin:14px 0;box-shadow:0 2px 4px rgba(21,69,24,.06)}
+.card-h{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
+.card-t{font-size:15px;font-weight:700;color:var(--gd)}
+.badge{display:inline-block;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:600}
+.b-g{background:#E8F5E9;color:#2E7D32}.b-y{background:#FFF8E1;color:#F57F17}.b-r{background:#FFEBEE;color:#C62828}.b-b{background:#E3F2FD;color:#1565C0}
+.rule{background:#FFFDE7;border:1px solid #FFF176;border-left:4px solid #F9A825;border-radius:6px;padding:12px 16px;margin:12px 0;font-size:13px}
+.rule .rt{font-weight:700;color:#E65100;margin-bottom:4px;font-size:12px;text-transform:uppercase;letter-spacing:.5px}
+.info{background:#E3F2FD;border:1px solid #90CAF9;border-left:4px solid #1976D2;border-radius:6px;padding:12px 16px;margin:12px 0;font-size:13px}
+.info .it{font-weight:700;color:#1565C0;margin-bottom:4px;font-size:12px;text-transform:uppercase;letter-spacing:.5px}
+ul.fl{list-style:none;padding:0}
+ul.fl li{padding:7px 0 7px 20px;font-size:13px;border-bottom:1px solid var(--bl);position:relative}
+ul.fl li:last-child{border-bottom:none}
+ul.fl li::before{content:"●";position:absolute;left:0;color:var(--gb);font-size:10px;top:9px}
+.flow-step{background:var(--bw);border:2px solid var(--bl);border-left:5px solid var(--gb);border-radius:8px;padding:16px 20px;margin:12px 0}
+.flow-step .fs-num{display:inline-block;background:var(--gd);color:var(--gc);width:28px;height:28px;border-radius:50%;text-align:center;line-height:28px;font-size:13px;font-weight:700;margin-right:10px}
+.flow-step .fs-title{font-size:14px;font-weight:700;color:var(--gd);display:inline}
+.flow-step .fs-desc{margin-top:8px;font-size:13px;color:var(--td);line-height:1.6}
+.flow-step .fs-actors{margin-top:6px;font-size:12px;color:var(--tm)}
+.flow-step .fs-output{margin-top:6px;font-size:12px;color:#1565C0;font-weight:600}
+.db-entity{background:#F8F9FA;border:1px solid #DEE2E6;border-radius:8px;margin:14px 0;overflow:hidden}
+.db-entity .db-h{background:var(--gd);color:var(--gc);padding:10px 16px;font-weight:700;font-size:14px}
+.db-entity table{margin:0}
+.db-entity thead th{background:#2D5A30;font-size:11px}
+.db-entity tbody td{font-size:12px;padding:6px 12px}
+.mockup{background:#F8F9FA;border:2px solid #DEE2E6;border-radius:12px;padding:20px;margin:16px 0}
+.mockup-title{font-size:13px;font-weight:700;color:var(--gd);margin-bottom:12px;text-transform:uppercase;letter-spacing:.5px}
+.mock-bar{background:var(--gd);border-radius:8px 8px 0 0;padding:12px 16px;display:flex;align-items:center;gap:8px}
+.mock-dot{width:10px;height:10px;border-radius:50%;background:rgba(255,255,255,.3)}
+.mock-url{color:var(--gc);font-size:11px;opacity:.6;margin-left:12px}
+.mock-body{background:var(--bw);border:1px solid #DEE2E6;border-top:none;border-radius:0 0 8px 8px;padding:20px;min-height:200px}
+.mock-nav{background:#F5FFF0;padding:10px 16px;border-bottom:1px solid var(--bl);font-size:12px;color:var(--tm)}
+.mock-form-group{margin:12px 0}
+.mock-label{font-size:12px;color:var(--tm);margin-bottom:4px;font-weight:600}
+.mock-input{width:100%;padding:8px 12px;border:1px solid #DEE2E6;border-radius:6px;font-size:13px;background:#F8F9FA}
+.mock-select{padding:8px 12px;border:1px solid #DEE2E6;border-radius:6px;font-size:13px;background:#F8F9FA}
+.mock-btn{display:inline-block;padding:8px 20px;border-radius:6px;font-size:13px;font-weight:600;cursor:default}
+.mock-btn-p{background:var(--gb);color:#fff;border:none}
+.mock-btn-s{background:var(--bw);color:var(--gd);border:1px solid var(--bl)}
+.mock-table{width:100%;font-size:12px;border-collapse:collapse}
+.mock-table th{background:var(--bg);padding:8px;text-align:left;font-size:11px;text-transform:uppercase;color:var(--tm);border-bottom:2px solid var(--bl)}
+.mock-table td{padding:8px;border-bottom:1px solid #EEE}
+.mock-badge{display:inline-block;padding:2px 8px;border-radius:10px;font-size:10px;font-weight:600}
+.mock-grid{display:grid;gap:12px}
+.mock-grid-2{grid-template-columns:1fr 1fr}
+.mock-grid-3{grid-template-columns:1fr 1fr 1fr}
+.mock-grid-4{grid-template-columns:1fr 1fr 1fr 1fr}
+.mock-card{background:var(--bg);border:1px solid var(--bl);border-radius:8px;padding:14px;text-align:center}
+.mock-card .mc-num{font-size:24px;font-weight:800;color:var(--gd)}
+.mock-card .mc-lab{font-size:10px;color:var(--tm);text-transform:uppercase;letter-spacing:.5px}
+.mock-tab{display:inline-block;padding:6px 14px;font-size:12px;border-bottom:2px solid transparent;color:var(--tm);cursor:default}
+.mock-tab.active{color:var(--gd);border-color:var(--gb);font-weight:600}
+.connector{text-align:center;padding:6px 0;color:var(--gb);font-size:18px}
+.ftr{background:var(--gd);color:var(--gc);padding:24px 50px;border-top:3px solid var(--gb);display:flex;justify-content:space-between;align-items:center;font-size:12px}
+.ftr-l{opacity:.8}.ftr-r{text-align:right;opacity:.7;font-size:11px}
+.toc{background:var(--bg);border:1px solid var(--bl);border-radius:8px;padding:20px 24px;margin:16px 0}
+.toc-title{font-size:14px;font-weight:700;color:var(--gd);margin-bottom:10px}
+.toc a{display:block;padding:4px 0;font-size:13px;color:var(--gd);text-decoration:none;border-bottom:1px solid rgba(212,237,218,.5)}
+.toc a:hover{color:var(--gb)}
+.toc a .pg{float:right;color:var(--tm);font-size:12px}
+.page-break{border-top:2px dashed var(--bl);margin:40px 0;position:relative}
+.page-break::after{content:"";position:absolute;top:-1px;left:50%;transform:translateX(-50%);background:var(--bw);padding:0 12px;color:var(--tm);font-size:11px}
+@media print{body{background:#fff}.doc{box-shadow:none;margin:0}.page-break{page-break-before:always}}
+@media(max-width:700px){.hdr,.cnt,.ftr{padding-left:20px;padding-right:20px}.hdr-top{flex-direction:column;gap:12px}.hmeta{gap:14px}.mock-grid-2,.mock-grid-3,.mock-grid-4{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="doc">
+
+<div class="hdr">
+<div class="hdr-top">
+<div class="logo">
+<div class="logo-i">S</div>
+<div class="logo-t"><h1>SNAPPIFFY</h1><div class="tag">YOUR APP IN A SNAP</div></div>
+</div>
+<div class="dbadge"><div class="dn">GRN-PLAN-2026-001</div><div class="dt">Documento de Planificación</div></div>
+</div>
+<div class="htitle">Documento de Planificación Técnica — Módulo 1</div>
+<div class="hsub">Greenery Productions Inc. — Sistema Integrado de Operaciones</div>
+<div class="hmeta">
+<div><span class="lb">Fecha</span><span class="vl">05 de Abril, 2026</span></div>
+<div><span class="lb">Versión</span><span class="vl">1.0</span></div>
+<div><span class="lb">Preparado por</span><span class="vl">Manuel Ferrer — Snappiffy</span></div>
+<div><span class="lb">Fase</span><span class="vl">1 — Diseño y Planificación</span></div>
+</div>
+</div>
+
+<div class="cnt">
+
+<!-- TOC -->
+<div class="toc">
+<div class="toc-title">Contenido del Documento</div>
+<a href="#s1">Sección 1 — Resumen General del Sistema<span class="pg">Visión integral de los 9 módulos</span></a>
+<a href="#s2">Sección 2 — Flujo Detallado del Módulo 1 (Proposals / GATS)<span class="pg">Para el equipo de desarrollo</span></a>
+<a href="#s3">Sección 3 — Borrador de Base de Datos del Módulo 1<span class="pg">Modelo relacional inicial</span></a>
+<a href="#s4">Sección 4 — Mockups Web del Módulo 1<span class="pg">Interfaces de usuario propuestas</span></a>
+</div>
+
+<!-- ================================================================ -->
+<!-- SECCIÓN 1: RESUMEN GENERAL DEL SISTEMA -->
+<!-- ================================================================ -->
+<div class="page-break"></div>
+<div class="sec" id="s1">
+<h2 class="stitle">Sección 1 — Resumen General del Sistema</h2>
+
+<p>El Sistema Integrado de Operaciones de Greenery Productions es una plataforma digital diseñada para reemplazar completamente los procesos manuales basados en hojas de Excel, documentos impresos en papel (original + 2 copias) y comunicación por email que actualmente operan los departamentos de Ventas, Mantenimiento y Compras.</p>
+
+<p>El sistema se compone de <strong>9 módulos interconectados</strong> que cubren todo el ciclo operativo: desde que un vendedor visita un espacio hasta que el técnico ejecuta el mantenimiento y la gerencia visualiza los resultados en tiempo real.</p>
+
+<h3 class="stitle2">Visión del flujo completo</h3>
+
+<div class="card">
+<div class="card-h"><span class="card-t">El ciclo de vida de una cuenta de Greenery</span></div>
+<p class="muted">A continuación se describe cómo los 9 módulos se conectan para formar un flujo continuo. Cada paso indica qué módulo lo ejecuta y qué módulo se activa después.</p>
+</div>
+
+<div class="flow-step">
+<span class="fs-num">1</span><span class="fs-title">Captación y cotización (Módulo 1 — Proposals / GATS)</span>
+<div class="fs-desc">Cindy o Hailey visitan el espacio del cliente (o reciben un plano del diseñador de interiores). Evalúan el mobiliario, el arte, el flujo de tráfico y recomiendan plantas. Crean el proposal en el sistema seleccionando plantas, pots y materiales. El sistema calcula automáticamente costos, markup variable, freight, rotaciones y tiempos de mantenimiento. El proposal se genera como PDF y se envía al cliente con firma digital. Soporta tres modos: compra directa, leasing (24/36 meses) y precio fijo (contratos gubernamentales).</div>
+<div class="fs-actors">Personas: Cindy (ventas), Hailey (marketing), cliente</div>
+<div class="fs-output">Salida → Proposal aprobado activa: M03, M04, M06 y QuickBooks</div>
+</div>
+
+<div class="connector">▼</div>
+
+<div class="flow-step">
+<span class="fs-num">2</span><span class="fs-title">Asignación presupuestaria (Módulo 3 — Presupuestos)</span>
+<div class="fs-desc">Cuando se aprueba un proposal, los datos del GATS se registran automáticamente como presupuesto asignado para esa cuenta. Olga mantiene un "badge" de presupuesto anual (~$84-85K para reposiciones) con seguimiento visual rojo/verde. Cualquier orden de trabajo que exceda el presupuesto requiere aprobación de Matt (gerente general) con un solo clic. El sistema también genera automáticamente el Cost Analysis comparando lo presupuestado vs. lo realmente gastado después de cada proyecto.</div>
+<div class="fs-actors">Personas: Olga (operaciones), Matt (gerencia)</div>
+<div class="fs-output">Salida → Valida órdenes de M02 contra presupuesto</div>
+</div>
+
+<div class="connector">▼</div>
+
+<div class="flow-step">
+<span class="fs-num">3</span><span class="fs-title">Gestión de compras (Módulo 4 — Compras / Growers)</span>
+<div class="fs-desc">Olga genera un "documento maquillado" a partir del proposal aprobado: elimina los precios de venta y deja solo el tope de presupuesto por categoría. Tony (compras) recibe este documento y puede comprar <strong>solo plantas y materiales de staging</strong>, nunca los pots — esos los compra Cindy directamente porque ella tiene la relación con los proveedores. El sistema sugiere automáticamente el grower más económico basado en las listas de precios actualizadas semanalmente, pero Tony puede editar la selección si un proveedor está cerrado o no disponible.</div>
+<div class="fs-actors">Personas: Olga (genera orden), Tony/Skippy (ejecuta compra), Cindy (pots)</div>
+<div class="fs-output">Salida → Mercancía recibida alimenta M05 (Inventario)</div>
+</div>
+
+<div class="connector">▼</div>
+
+<div class="flow-step">
+<span class="fs-num">4</span><span class="fs-title">Control de inventario (Módulo 5 — Sistema 7-O-6)</span>
+<div class="fs-desc">Las plantas recibidas se registran en inventario con etiquetas QR. Se rastrean desde la recepción hasta la instalación o disposición. El concepto "7-O-6" (plantas disponibles en el warehouse) se formaliza como sistema digital. Los "leftovers" (sobrantes de compras anteriores, como orquídeas que vienen en cases de 8) se registran y se buscan primero antes de generar nuevas compras.</div>
+<div class="fs-actors">Personas: Tony (recepción), equipo de warehouse</div>
+<div class="fs-output">Salida → Plantas disponibles para instalación y rutas (M06)</div>
+</div>
+
+<div class="connector">▼</div>
+
+<div class="flow-step">
+<span class="fs-num">5</span><span class="fs-title">Scheduling e instalación (Módulo 6 — Rutas / Time & Attendance)</span>
+<div class="fs-desc">El sistema gestiona los schedules de técnicos en ciclos de 2 semanas (semana 1 y semana 2), con rutas fijas por día y notas variables semanales. Cuando se aprueba un nuevo proposal, el sistema sugiere un técnico basado en proximidad geográfica y disponibilidad, pero <strong>Olga debe aprobar</strong> la asignación (hay factores humanos que el sistema no puede calcular). La aplicación móvil fuerza <strong>clock-in por geolocalización</strong>: el técnico no puede avanzar en sus tareas sin registrar que está en el sitio correcto. Esto resuelve el problema más grande de Olga actualmente: técnicos que no registran horas por proyecto.</div>
+<div class="fs-actors">Personas: Olga (aprueba rutas), técnicos (ejecutan), asistente (envía schedules)</div>
+<div class="fs-output">Salida → Horas registradas alimentan M08, ejecución alimenta M07</div>
+</div>
+
+<div class="connector">▼</div>
+
+<div class="flow-step">
+<span class="fs-num">6</span><span class="fs-title">Órdenes de trabajo (Módulo 2 — Work Orders)</span>
+<div class="fs-desc">Las work orders se generan en campo (cuando un técnico ve una planta deteriorada durante mantenimiento regular) o desde Quality Control. <strong>Nunca se generan desde un proposal</strong> — el proposal va directamente a orden de compra. El técnico llena: planta actual, planta solicitada como reemplazo, razón del cambio, ubicación específica ("frente a los baños del convention center"), y adjunta fotos. La orden va a Skippy (supervisor de campo) con copia a Olga, se verifica contra el badge/presupuesto, y se registra en el Work Order Log.</div>
+<div class="fs-actors">Personas: Técnicos (crean), Skippy (procesa), Olga (verifica)</div>
+<div class="fs-output">Salida → Genera compras en M04 y alimenta métricas en M08</div>
+</div>
+
+<div class="connector">▼</div>
+
+<div class="flow-step">
+<span class="fs-num">7</span><span class="fs-title">Control de calidad (Módulo 7 — QC)</span>
+<div class="fs-desc">Inspecciones programadas con frecuencias por color: amarillo (mensual, cuentas más importantes), rosado (bi-weekly), lila (bimensual), blanco (trimestral). Las hacen Doc, Skippy, Olga y Morgana. El QC genera work orders (para plantas que necesitan reemplazo) y proyectos (como lavar palmas sucias). Un puntaje bajo puede disparar alertas de reentrenamiento para el técnico responsable de esa cuenta.</div>
+<div class="fs-actors">Personas: Doc, Skippy, Olga, Morgana (inspectores)</div>
+<div class="fs-output">Salida → Genera Work Orders (M02) y proyectos de mantenimiento</div>
+</div>
+
+<div class="connector">▼</div>
+
+<div class="flow-step">
+<span class="fs-num">8</span><span class="fs-title">Dashboard gerencial (Módulo 8 — Reportes)</span>
+<div class="fs-desc">Centro de mando para la gerencia con los 4 reportes mensuales de Olga automatizados: (1) Reporte de tiempo — 1,600-1,700 horas/mes con monitoreo de promedios por cuenta; (2) Reporte de replacements — badge de $84-85K anuales con seguimiento rojo/verde; (3) Billing report — facturación mensual con diferenciación entre fecha de instalación y fecha de facturación; (4) Increase/decrease — crecimiento neto del departamento codificado por color.</div>
+<div class="fs-actors">Personas: Olga (genera), Matt y Linda (consumen)</div>
+<div class="fs-output">Salida → Visibilidad en tiempo real para decisiones gerenciales</div>
+</div>
+
+<div class="connector">▼</div>
+
+<div class="flow-step">
+<span class="fs-num">9</span><span class="fs-title">Portal del cliente (Módulo 9)</span>
+<div class="fs-desc">Portal web donde los clientes de Greenery pueden aprobar proposals con firma digital, reportar problemas, solicitar servicios adicionales, dar retroalimentación y ver el estado de sus servicios activos. Actualmente toda la comunicación es por email.</div>
+<div class="fs-actors">Personas: Clientes de Greenery</div>
+</div>
+
+<div class="card" style="margin-top:20px">
+<div class="card-h"><span class="card-t">Flujo especial: Damage Report</span><span class="badge b-y">Nuevo flujo descubierto</span></div>
+<p class="muted">Cuando un técnico encuentra daño por abuso del cliente (convención sacó planta al exterior, hotel echó demasiada agua, planta desaparecida), genera un Damage Report con fotos. Se decide monitorear o reemplazar. Si se reemplaza, se genera un <strong>proposal cobrable al cliente</strong>. Este es el único flujo externo que alimenta de vuelta al Módulo 1, creando un ciclo de retroalimentación.</p>
+</div>
+
+<div class="rule">
+<div class="rt">Principio arquitectónico</div>
+<strong>El Módulo 1 (Proposals/GATS) es el módulo fundacional.</strong> Es el punto de entrada de toda la cadena operativa. Sin M01, los módulos M02, M03, M04 y M06 no pueden funcionar. Esto define el orden de desarrollo: M01 se construye primero, y cada módulo subsiguiente se integra progresivamente.
+</div>
+</div>
+
+<!-- ================================================================ -->
+<!-- SECCIÓN 2: FLUJO DETALLADO DEL MÓDULO 1 -->
+<!-- ================================================================ -->
+<div class="page-break"></div>
+<div class="sec" id="s2">
+<h2 class="stitle">Sección 2 — Flujo Detallado del Módulo 1 (Proposals / GATS)</h2>
+<p>Esta sección documenta paso a paso la lógica de funcionamiento del Módulo 1 para que el equipo de desarrollo entienda las reglas de negocio, los cálculos internos y las decisiones que el sistema debe tomar automáticamente.</p>
+
+<h3 class="stitle2">2.1 — Crear o seleccionar cliente</h3>
+<div class="card">
+<ul class="fl">
+<li>Si es un cliente nuevo, Jennifer (contabilidad) crea el registro con: nombre de empresa, dirección, teléfono, persona de contacto y email</li>
+<li>Cada cliente puede tener múltiples <strong>locaciones</strong> (restaurante, lobby, spa, piscina, exterior, etc.)</li>
+<li>El proposal siempre se asocia a un cliente + locación específica</li>
+<li>Si el cliente ya existe en el sistema, se selecciona directamente</li>
+</ul>
+</div>
+
+<h3 class="stitle2">2.2 — Determinar tipo de venta</h3>
+<div class="card">
+<p class="muted">El sistema debe preguntar el modo de venta al inicio porque cambia toda la estructura de cálculos:</p>
+<table>
+<thead><tr><th>Modo</th><th>Descripción</th><th>Cálculo</th><th>Frecuencia</th></tr></thead>
+<tbody>
+<tr><td><strong>Compra directa</strong></td><td>El cliente compra plantas y pots, paga instalación y mantenimiento mensual</td><td>Markup variable + freight + mantenimiento mensual</td><td>~80% del negocio</td></tr>
+<tr><td><strong>Leasing</strong></td><td>El cliente arrienda; al final del contrato se retiran las plantas</td><td>Upfront (labor + flete) + mensualidad = (plantas + mantenim. + rotaciones) ÷ 24 o 36 meses</td><td>~10-20%</td></tr>
+<tr><td><strong>Precio fijo</strong></td><td>Contrato gubernamental (aeropuerto), precio fijo por tamaño</td><td>Tabla de precios predefinida por contrato</td><td>Casos especiales</td></tr>
+</tbody>
+</table>
+</div>
+
+<h3 class="stitle2">2.3 — Agregar productos al proposal</h3>
+<div class="card">
+<p class="muted">El proposal se compone de tres categorías de productos, cada una con reglas distintas:</p>
+
+<p><strong>A) Plantas verdes (mantenimiento)</strong></p>
+<table>
+<thead><tr><th>Tamaño</th><th>Uso</th><th>Notas</th></tr></thead>
+<tbody>
+<tr><td>4"</td><td>Muy raro</td><td>—</td></tr>
+<tr style="background:#E8F5E9"><td>6", 8", 10"</td><td>Muy frecuente</td><td>Las más usadas</td></tr>
+<tr style="background:#E8F5E9"><td>14"</td><td>Frecuente</td><td>A veces se sustituye por 12"</td></tr>
+<tr><td>17", 21", 24"</td><td>Menos frecuente</td><td>Generalmente palmas/árboles — requieren 2 personas para instalar</td></tr>
+</tbody>
+</table>
+
+<p><strong>B) Pots / Containers</strong></p>
+<ul class="fl">
+<li>Se especifican por referencia, dimensiones y proveedor</li>
+<li>El cliente puede ya tener los pots (no se cotizan) o solicitar que Greenery los compre</li>
+<li><strong>Cindy compra los pots directamente</strong> — nunca pasan por Tony</li>
+<li>Cientos de opciones de múltiples proveedores</li>
+</ul>
+
+<p><strong>C) Materiales de staging (instalación)</strong></p>
+<ul class="fl">
+<li>Hard foam (espuma dura), soft foam (espuma blanda)</li>
+<li>Moss sintético (envío FedEx, muy costoso)</li>
+<li>Tierra, mantillo, tela separadora de suelo</li>
+<li>Grava, piedras decorativas</li>
+<li>La selección de materiales por planta es <strong>completamente mental</strong> (Cindy decide por experiencia, no hay tabla) — el sistema debe aprender patrones con IA a partir de hojas GATS históricas</li>
+</ul>
+</div>
+
+<h3 class="stitle2">2.4 — Motor de cálculos y markup</h3>
+<div class="card">
+<div class="card-h"><span class="card-t">Regla de markup variable</span><span class="badge b-y">Decisión de Cindy</span></div>
+<table>
+<thead><tr><th>Situación</th><th>Markup</th><th>Freight</th></tr></thead>
+<tbody>
+<tr><td>Planta individual / cliente nuevo / instalación nueva</td><td><strong>×3.0</strong></td><td>20% del costo</td></tr>
+<tr><td>Trabajo grande con muchos ítems</td><td><strong>×2.5</strong> + materiales aparte</td><td>20% plantas / 25% pots y materiales</td></tr>
+<tr><td>Cliente recurrente (reposición por helada, etc.)</td><td><strong>~×2.5</strong></td><td>20% / 25%</td></tr>
+<tr><td>Items de muy alto costo ($1,000–$4,000+)</td><td><strong>×1.5</strong></td><td>25%</td></tr>
+</tbody>
+</table>
+<div class="rule">
+<div class="rt">Para el desarrollo</div>
+El markup <strong>no es una fórmula rígida</strong> — es decisión de Cindy basada en experiencia. El sistema debe permitir markup manual por línea de producto, con una sugerencia de IA que aprenda patrones a partir de las hojas GATS históricas. El valor por defecto al crear una línea nueva es ×2.5.
+</div>
+</div>
+
+<h3 class="stitle2">2.5 — Detección automática de rotaciones</h3>
+<div class="card">
+<p class="muted">Cuando el proposal incluye ciertos tipos de plantas, el sistema debe detectar automáticamente que requieren rotación periódica:</p>
+<table>
+<thead><tr><th>Tipo</th><th>Tamaños</th><th>Frecuencia por defecto</th><th>Veces/año</th><th>Excepciones</th></tr></thead>
+<tbody>
+<tr><td><strong>Bromelias</strong></td><td>4", 6", 8"</td><td>Cada 3 meses (quarterly)</td><td>4</td><td>Algunos clientes cada 2 meses</td></tr>
+<tr><td><strong>Orquídeas</strong></td><td>3", 5"</td><td>Cada 6 semanas</td><td>~8</td><td>Cada 4 o cada 8 semanas. Instalador dedicado con camión A/C</td></tr>
+<tr><td><strong>Suculentas</strong></td><td>2", 3", 4", 6"</td><td>Cada 6 semanas</td><td>~8</td><td>Cada 4 o cada 8 semanas. Assorted (barato) vs. Solid (caro)</td></tr>
+<tr><td><strong>Annuals / Color rotation</strong></td><td>4", 6"</td><td>Cada 8 semanas</td><td>~6</td><td>Algunos quarterly, otros cada 4 semanas (ej: HBR)</td></tr>
+<tr><td><strong>Poinsettias</strong></td><td>4", 6", 8", 10"</td><td>Anual (oct-nov-dic)</td><td>1</td><td>Seasonal. Notificaciones automáticas en octubre</td></tr>
+</tbody>
+</table>
+<p style="margin-top:10px"><strong>Fórmula:</strong> (precio venta unitario × cantidad × veces al año) ÷ 12 = <strong>cobro mensual</strong></p>
+<p class="muted">Las rotaciones siempre se facturan mensualmente vía invoice en QuickBooks, aunque se ejecuten cada 6-8 semanas.</p>
+</div>
+
+<h3 class="stitle2">2.6 — Cálculo de mantenimiento (garantizado vs. no garantizado)</h3>
+<div class="card">
+<table>
+<thead><tr><th>Tipo</th><th>Condición</th><th>Cálculo</th></tr></thead>
+<tbody>
+<tr><td><strong>Garantizado</strong></td><td>Plantas interiores, menores a 6 pies de alto</td><td>Tiempo del técnico × $35/h + (65% del costo wholesale anual ÷ 12) + overhead</td></tr>
+<tr><td><strong>No garantizado</strong></td><td>Plantas exteriores o mayores a 6 pies</td><td>Solo tiempo del técnico × $35/h</td></tr>
+</tbody>
+</table>
+<p class="muted" style="margin-top:8px"><strong>Tiempo por planta:</strong> 10"+ = 2 min/planta | 8" o menos = 1 min/planta. Total minutos ÷ 60 = horas asignadas. Olga normalmente ajusta a la baja (~30%).</p>
+<p class="muted"><strong>Excepción:</strong> se puede ofrecer garantía en plantas exteriores o mayores a 6 pies con aprobación especial y cobro diferenciado.</p>
+</div>
+
+<h3 class="stitle2">2.7 — Notas/instrucciones especiales</h3>
+<div class="card">
+<ul class="fl">
+<li>Cindy agrega notas por línea del proposal: "plantas deben ser cultivadas al sol", "plantar directo en la maceta del cliente"</li>
+<li>Estas notas son <strong>críticas</strong> y deben fluir hasta la orden de compra y el schedule del técnico</li>
+<li>El campo debe ser visible en la vista de Tony (compras) y en el schedule del técnico</li>
+</ul>
+</div>
+
+<h3 class="stitle2">2.8 — Generación del GATS y envío al cliente</h3>
+<div class="card">
+<ul class="fl">
+<li>El GATS se calcula automáticamente como fórmula interna — nadie lo genera manualmente</li>
+<li>El sistema genera un PDF profesional con fotos y resumen de productos (sin costos internos)</li>
+<li>Se envía al cliente por email con firma digital integrada</li>
+<li>El cliente puede aprobar, solicitar modificaciones o rechazar</li>
+<li>Si solicita cambios → Cindy edita → reenvía (ciclo hasta aprobación)</li>
+</ul>
+</div>
+
+<h3 class="stitle2">2.9 — Post-aprobación: cascada hacia otros módulos</h3>
+<div class="card">
+<p class="muted">Cuando el cliente firma digitalmente, se dispara:</p>
+<ul class="fl">
+<li><strong>→ M03:</strong> datos del GATS se registran como presupuesto de la cuenta</li>
+<li><strong>→ M04:</strong> Olga genera documento maquillado (sin precios de venta). Tony compra plantas + staging con tope. Cindy compra pots directo</li>
+<li><strong>→ M06:</strong> se crea ruta de instalación con sugerencia de técnico (Olga aprueba)</li>
+<li><strong>→ QuickBooks:</strong> se configura el invoice mensual con rotaciones</li>
+<li>Notificación automática a Olga, Tony y Cindy</li>
+</ul>
+</div>
+</div>
+
+<!-- ================================================================ -->
+<!-- SECCIÓN 3: BASE DE DATOS -->
+<!-- ================================================================ -->
+<div class="page-break"></div>
+<div class="sec" id="s3">
+<h2 class="stitle">Sección 3 — Borrador de Base de Datos del Módulo 1</h2>
+<p>Este es un modelo relacional inicial enfocado exclusivamente en las entidades necesarias para el Módulo 1 (Proposals/GATS). No incluye autenticación, permisos ni módulos posteriores. Es un punto de partida para discusión con el equipo de desarrollo.</p>
+
+<div class="info">
+<div class="it">Nota</div>
+Este borrador representa la primera deducción basada en las reuniones con Olga y Cindy. Se refinará durante el desarrollo conforme se validen campos con el equipo de Greenery.
+</div>
+
+<div class="db-entity">
+<div class="db-h">clients (Clientes)</div>
+<table>
+<thead><tr><th>Campo</th><th>Tipo</th><th>Requerido</th><th>Descripción</th></tr></thead>
+<tbody>
+<tr><td>id</td><td>UUID</td><td>PK</td><td>Identificador único</td></tr>
+<tr><td>company_name</td><td>VARCHAR(255)</td><td>Sí</td><td>Nombre de la empresa</td></tr>
+<tr><td>address</td><td>TEXT</td><td>Sí</td><td>Dirección principal</td></tr>
+<tr><td>phone</td><td>VARCHAR(20)</td><td>No</td><td>Teléfono de contacto</td></tr>
+<tr><td>contact_name</td><td>VARCHAR(255)</td><td>Sí</td><td>Nombre del contacto principal</td></tr>
+<tr><td>contact_email</td><td>VARCHAR(255)</td><td>Sí</td><td>Email del contacto</td></tr>
+<tr><td>client_type</td><td>ENUM</td><td>Sí</td><td>'standard' | 'government' | 'airport'</td></tr>
+<tr><td>created_at</td><td>TIMESTAMP</td><td>Sí</td><td>Fecha de creación</td></tr>
+<tr><td>is_active</td><td>BOOLEAN</td><td>Sí</td><td>Estado activo/inactivo</td></tr>
+</tbody>
+</table>
+</div>
+
+<div class="db-entity">
+<div class="db-h">client_locations (Locaciones del cliente)</div>
+<table>
+<thead><tr><th>Campo</th><th>Tipo</th><th>Requerido</th><th>Descripción</th></tr></thead>
+<tbody>
+<tr><td>id</td><td>UUID</td><td>PK</td><td>Identificador único</td></tr>
+<tr><td>client_id</td><td>UUID</td><td>FK → clients</td><td>Cliente padre</td></tr>
+<tr><td>name</td><td>VARCHAR(255)</td><td>Sí</td><td>"Restaurante", "Lobby", "Spa", "Piscina"</td></tr>
+<tr><td>address</td><td>TEXT</td><td>Sí</td><td>Dirección de la locación</td></tr>
+<tr><td>latitude</td><td>DECIMAL</td><td>No</td><td>Para cálculo de rutas y GPS clock-in</td></tr>
+<tr><td>longitude</td><td>DECIMAL</td><td>No</td><td>Para cálculo de rutas y GPS clock-in</td></tr>
+<tr><td>environment</td><td>ENUM</td><td>Sí</td><td>'indoor' | 'outdoor' | 'mixed'</td></tr>
+</tbody>
+</table>
+</div>
+
+<div class="db-entity">
+<div class="db-h">growers (Proveedores / Growers)</div>
+<table>
+<thead><tr><th>Campo</th><th>Tipo</th><th>Requerido</th><th>Descripción</th></tr></thead>
+<tbody>
+<tr><td>id</td><td>UUID</td><td>PK</td><td>Identificador único</td></tr>
+<tr><td>name</td><td>VARCHAR(255)</td><td>Sí</td><td>Ej: "Vernecker", "Capri", "Bruce Jensen"</td></tr>
+<tr><td>contact_info</td><td>TEXT</td><td>No</td><td>Información de contacto</td></tr>
+<tr><td>priority</td><td>ENUM</td><td>Sí</td><td>'primary' | 'secondary' | 'alternative'</td></tr>
+<tr><td>specialty</td><td>VARCHAR(255)</td><td>No</td><td>Ej: "canes/palmas altas" (Bind & Culture)</td></tr>
+<tr><td>is_active</td><td>BOOLEAN</td><td>Sí</td><td>Estado activo</td></tr>
+</tbody>
+</table>
+</div>
+
+<div class="db-entity">
+<div class="db-h">products (Catálogo de productos)</div>
+<table>
+<thead><tr><th>Campo</th><th>Tipo</th><th>Requerido</th><th>Descripción</th></tr></thead>
+<tbody>
+<tr><td>id</td><td>UUID</td><td>PK</td><td>Identificador único</td></tr>
+<tr><td>category</td><td>ENUM</td><td>Sí</td><td>'plant' | 'pot' | 'staging_material'</td></tr>
+<tr><td>name</td><td>VARCHAR(255)</td><td>Sí</td><td>Nombre del producto</td></tr>
+<tr><td>plant_type</td><td>ENUM</td><td>Si plant</td><td>'green' | 'bromeliad' | 'orchid' | 'succulent' | 'annual' | 'poinsettia'</td></tr>
+<tr><td>size_inches</td><td>DECIMAL</td><td>No</td><td>Tamaño en pulgadas</td></tr>
+<tr><td>is_rotation</td><td>BOOLEAN</td><td>Sí</td><td>Si requiere rotación periódica</td></tr>
+<tr><td>default_rotation_weeks</td><td>INTEGER</td><td>No</td><td>Frecuencia de rotación por defecto (en semanas)</td></tr>
+<tr><td>maintenance_minutes</td><td>INTEGER</td><td>No</td><td>Minutos de mantenimiento por unidad (1 o 2)</td></tr>
+<tr><td>warranty_eligible</td><td>BOOLEAN</td><td>Sí</td><td>Si califica para garantía por defecto</td></tr>
+</tbody>
+</table>
+</div>
+
+<div class="db-entity">
+<div class="db-h">grower_prices (Precios por grower — actualización semanal)</div>
+<table>
+<thead><tr><th>Campo</th><th>Tipo</th><th>Requerido</th><th>Descripción</th></tr></thead>
+<tbody>
+<tr><td>id</td><td>UUID</td><td>PK</td><td>Identificador único</td></tr>
+<tr><td>grower_id</td><td>UUID</td><td>FK → growers</td><td>Proveedor</td></tr>
+<tr><td>product_id</td><td>UUID</td><td>FK → products</td><td>Producto</td></tr>
+<tr><td>cost_price</td><td>DECIMAL(10,2)</td><td>Sí</td><td>Precio de costo del grower</td></tr>
+<tr><td>is_available</td><td>BOOLEAN</td><td>Sí</td><td>Disponibilidad actual</td></tr>
+<tr><td>week_number</td><td>INTEGER</td><td>Sí</td><td>Semana del año de la actualización</td></tr>
+<tr><td>year</td><td>INTEGER</td><td>Sí</td><td>Año</td></tr>
+<tr><td>updated_at</td><td>TIMESTAMP</td><td>Sí</td><td>Fecha de actualización</td></tr>
+</tbody>
+</table>
+</div>
+
+<div class="db-entity">
+<div class="db-h">proposals (Proposals / cotizaciones)</div>
+<table>
+<thead><tr><th>Campo</th><th>Tipo</th><th>Requerido</th><th>Descripción</th></tr></thead>
+<tbody>
+<tr><td>id</td><td>UUID</td><td>PK</td><td>Identificador único</td></tr>
+<tr><td>client_id</td><td>UUID</td><td>FK → clients</td><td>Cliente</td></tr>
+<tr><td>location_id</td><td>UUID</td><td>FK → client_locations</td><td>Locación específica</td></tr>
+<tr><td>sale_type</td><td>ENUM</td><td>Sí</td><td>'purchase' | 'leasing' | 'fixed_price'</td></tr>
+<tr><td>leasing_months</td><td>INTEGER</td><td>No</td><td>24 o 36 (solo si leasing)</td></tr>
+<tr><td>status</td><td>ENUM</td><td>Sí</td><td>'draft' | 'sent' | 'revision' | 'approved' | 'rejected'</td></tr>
+<tr><td>created_by</td><td>VARCHAR(255)</td><td>Sí</td><td>Cindy, Hailey, etc.</td></tr>
+<tr><td>subtotal_cost</td><td>DECIMAL(10,2)</td><td>No</td><td>Costo total interno (GATS)</td></tr>
+<tr><td>subtotal_sale</td><td>DECIMAL(10,2)</td><td>No</td><td>Precio total de venta al cliente</td></tr>
+<tr><td>total_freight</td><td>DECIMAL(10,2)</td><td>No</td><td>Freight total calculado</td></tr>
+<tr><td>monthly_maintenance</td><td>DECIMAL(10,2)</td><td>No</td><td>Cobro mensual de mantenimiento</td></tr>
+<tr><td>monthly_rotations</td><td>DECIMAL(10,2)</td><td>No</td><td>Cobro mensual de rotaciones</td></tr>
+<tr><td>estimated_tech_hours</td><td>DECIMAL(5,2)</td><td>No</td><td>Horas estimadas del técnico por visita</td></tr>
+<tr><td>estimated_install_hours</td><td>DECIMAL(5,2)</td><td>No</td><td>Horas estimadas de instalación</td></tr>
+<tr><td>labor_rate</td><td>DECIMAL(5,2)</td><td>Sí</td><td>Tarifa hora labor (default $35)</td></tr>
+<tr><td>approved_at</td><td>TIMESTAMP</td><td>No</td><td>Fecha de aprobación del cliente</td></tr>
+<tr><td>created_at</td><td>TIMESTAMP</td><td>Sí</td><td>Fecha de creación</td></tr>
+</tbody>
+</table>
+</div>
+
+<div class="db-entity">
+<div class="db-h">proposal_items (Líneas del proposal)</div>
+<table>
+<thead><tr><th>Campo</th><th>Tipo</th><th>Requerido</th><th>Descripción</th></tr></thead>
+<tbody>
+<tr><td>id</td><td>UUID</td><td>PK</td><td>Identificador único</td></tr>
+<tr><td>proposal_id</td><td>UUID</td><td>FK → proposals</td><td>Proposal padre</td></tr>
+<tr><td>product_id</td><td>UUID</td><td>FK → products</td><td>Producto del catálogo</td></tr>
+<tr><td>grower_id</td><td>UUID</td><td>FK → growers</td><td>Grower seleccionado para cotizar</td></tr>
+<tr><td>zone</td><td>VARCHAR(255)</td><td>No</td><td>"Restaurante", "Lobby lado derecho", "Spa"</td></tr>
+<tr><td>quantity</td><td>INTEGER</td><td>Sí</td><td>Cantidad de unidades</td></tr>
+<tr><td>containers</td><td>INTEGER</td><td>No</td><td>Número de containers/planters</td></tr>
+<tr><td>units_per_container</td><td>INTEGER</td><td>No</td><td>Plantas por container</td></tr>
+<tr><td>cost_price</td><td>DECIMAL(10,2)</td><td>Sí</td><td>Precio de costo unitario</td></tr>
+<tr><td>markup_factor</td><td>DECIMAL(3,2)</td><td>Sí</td><td>Factor de markup (1.5, 2.5, 3.0)</td></tr>
+<tr><td>sale_price</td><td>DECIMAL(10,2)</td><td>Sí</td><td>Precio de venta unitario (cost × markup)</td></tr>
+<tr><td>freight_percent</td><td>DECIMAL(4,2)</td><td>Sí</td><td>Porcentaje de freight (20% o 25%)</td></tr>
+<tr><td>freight_amount</td><td>DECIMAL(10,2)</td><td>Sí</td><td>Monto de freight calculado</td></tr>
+<tr><td>line_total_cost</td><td>DECIMAL(10,2)</td><td>Sí</td><td>Total línea a costo</td></tr>
+<tr><td>line_total_sale</td><td>DECIMAL(10,2)</td><td>Sí</td><td>Total línea a precio de venta</td></tr>
+<tr><td>is_warranty</td><td>BOOLEAN</td><td>Sí</td><td>Si tiene garantía de mantenimiento</td></tr>
+<tr><td>succulent_type</td><td>ENUM</td><td>No</td><td>'assorted' | 'solid' (solo suculentas)</td></tr>
+<tr><td>notes</td><td>TEXT</td><td>No</td><td>Instrucciones especiales para instalación</td></tr>
+<tr><td>client_owns_pot</td><td>BOOLEAN</td><td>No</td><td>Si el cliente ya tiene la maceta</td></tr>
+</tbody>
+</table>
+</div>
+
+<div class="db-entity">
+<div class="db-h">proposal_rotations (Rotaciones calculadas)</div>
+<table>
+<thead><tr><th>Campo</th><th>Tipo</th><th>Requerido</th><th>Descripción</th></tr></thead>
+<tbody>
+<tr><td>id</td><td>UUID</td><td>PK</td><td>Identificador único</td></tr>
+<tr><td>proposal_id</td><td>UUID</td><td>FK → proposals</td><td>Proposal padre</td></tr>
+<tr><td>proposal_item_id</td><td>UUID</td><td>FK → proposal_items</td><td>Línea que genera la rotación</td></tr>
+<tr><td>plant_type</td><td>ENUM</td><td>Sí</td><td>'bromeliad' | 'orchid' | 'succulent' | 'annual' | 'poinsettia'</td></tr>
+<tr><td>frequency_weeks</td><td>INTEGER</td><td>Sí</td><td>Frecuencia en semanas (default por tipo, editable)</td></tr>
+<tr><td>times_per_year</td><td>INTEGER</td><td>Sí</td><td>Veces al año calculado</td></tr>
+<tr><td>unit_sale_price</td><td>DECIMAL(10,2)</td><td>Sí</td><td>Precio de venta unitario por rotación</td></tr>
+<tr><td>annual_cost</td><td>DECIMAL(10,2)</td><td>Sí</td><td>(sale_price × quantity × times_per_year)</td></tr>
+<tr><td>monthly_charge</td><td>DECIMAL(10,2)</td><td>Sí</td><td>annual_cost ÷ 12</td></tr>
+</tbody>
+</table>
+</div>
+
+<div class="db-entity">
+<div class="db-h">proposal_photos (Fotos del proposal)</div>
+<table>
+<thead><tr><th>Campo</th><th>Tipo</th><th>Requerido</th><th>Descripción</th></tr></thead>
+<tbody>
+<tr><td>id</td><td>UUID</td><td>PK</td><td>Identificador único</td></tr>
+<tr><td>proposal_id</td><td>UUID</td><td>FK → proposals</td><td>Proposal padre</td></tr>
+<tr><td>file_url</td><td>TEXT</td><td>Sí</td><td>URL del archivo almacenado</td></tr>
+<tr><td>caption</td><td>VARCHAR(255)</td><td>No</td><td>Descripción de la foto</td></tr>
+<tr><td>photo_type</td><td>ENUM</td><td>Sí</td><td>'site' | 'plant_reference' | 'damage'</td></tr>
+<tr><td>uploaded_at</td><td>TIMESTAMP</td><td>Sí</td><td>Fecha de carga</td></tr>
+</tbody>
+</table>
+</div>
+
+<div class="card" style="margin-top:20px">
+<div class="card-h"><span class="card-t">Relaciones principales</span></div>
+<ul class="fl">
+<li><strong>clients</strong> 1:N → <strong>client_locations</strong> (un cliente tiene múltiples locaciones)</li>
+<li><strong>clients</strong> 1:N → <strong>proposals</strong> (un cliente tiene múltiples proposals)</li>
+<li><strong>proposals</strong> 1:N → <strong>proposal_items</strong> (un proposal tiene múltiples líneas de producto)</li>
+<li><strong>proposals</strong> 1:N → <strong>proposal_rotations</strong> (un proposal puede generar múltiples rotaciones)</li>
+<li><strong>proposals</strong> 1:N → <strong>proposal_photos</strong> (un proposal tiene múltiples fotos)</li>
+<li><strong>products</strong> 1:N → <strong>grower_prices</strong> (un producto tiene precios en múltiples growers)</li>
+<li><strong>growers</strong> 1:N → <strong>grower_prices</strong> (un grower tiene precios de múltiples productos)</li>
+<li><strong>proposal_items</strong> → <strong>products</strong> (cada línea referencia un producto del catálogo)</li>
+<li><strong>proposal_items</strong> → <strong>growers</strong> (cada línea indica con qué grower se cotizó)</li>
+</ul>
+</div>
+</div>
+
+<!-- ================================================================ -->
+<!-- SECCIÓN 4: MOCKUPS WEB -->
+<!-- ================================================================ -->
+<div class="page-break"></div>
+<div class="sec" id="s4">
+<h2 class="stitle">Sección 4 — Mockups Web del Módulo 1</h2>
+<p>Las siguientes interfaces representan las pantallas principales que necesita el Módulo 1 en la aplicación web. Son wireframes funcionales que muestran la estructura, los campos y el flujo de usuario.</p>
+
+<!-- MOCKUP 1: Dashboard de proposals -->
+<h3 class="stitle2">4.1 — Dashboard de proposals</h3>
+<div class="mockup">
+<div class="mockup-title">Pantalla: lista de proposals</div>
+<div class="mock-bar">
+<div class="mock-dot"></div><div class="mock-dot"></div><div class="mock-dot"></div>
+<span class="mock-url">app.greenery.com/proposals</span>
+</div>
+<div class="mock-body">
+<div class="mock-nav">
+<strong style="color:var(--gd);font-size:16px;">Proposals</strong>
+<span style="float:right"><span class="mock-btn mock-btn-p">+ Nuevo proposal</span></span>
+</div>
+<div style="padding:12px 0">
+<div class="mock-grid mock-grid-4" style="margin-bottom:16px">
+<div class="mock-card"><div class="mc-num">47</div><div class="mc-lab">Total</div></div>
+<div class="mock-card"><div class="mc-num" style="color:#F57F17">12</div><div class="mc-lab">Borradores</div></div>
+<div class="mock-card"><div class="mc-num" style="color:#1565C0">8</div><div class="mc-lab">Enviados</div></div>
+<div class="mock-card"><div class="mc-num" style="color:#2E7D32">27</div><div class="mc-lab">Aprobados</div></div>
+</div>
+<div style="margin-bottom:12px;display:flex;gap:8px;align-items:center">
+<input class="mock-input" style="width:250px" placeholder="Buscar por cliente o locación..." />
+<select class="mock-select"><option>Todos los estados</option></select>
+<select class="mock-select"><option>Todos los tipos</option></select>
+</div>
+<table class="mock-table">
+<thead><tr><th>Proposal</th><th>Cliente</th><th>Locación</th><th>Tipo</th><th>Total venta</th><th>Mensual</th><th>Estado</th><th>Fecha</th></tr></thead>
+<tbody>
+<tr><td><strong>PRO-2026-047</strong></td><td>Hilton Bonnet Creek</td><td>Lobby principal</td><td>Compra</td><td>$14,280</td><td>$892</td><td><span class="mock-badge" style="background:#E8F5E9;color:#2E7D32">Aprobado</span></td><td>02/Abr</td></tr>
+<tr><td><strong>PRO-2026-046</strong></td><td>Swan & Dolphin</td><td>Restaurante Shula's</td><td>Compra</td><td>$6,750</td><td>$425</td><td><span class="mock-badge" style="background:#E3F2FD;color:#1565C0">Enviado</span></td><td>01/Abr</td></tr>
+<tr><td><strong>PRO-2026-045</strong></td><td>MCO Airport</td><td>Terminal C</td><td>Precio fijo</td><td>$22,100</td><td>$1,840</td><td><span class="mock-badge" style="background:#FFF8E1;color:#F57F17">Borrador</span></td><td>28/Mar</td></tr>
+<tr><td><strong>PRO-2026-044</strong></td><td>Travel & Leisure</td><td>Spa</td><td>Leasing 24m</td><td>—</td><td>$1,200</td><td><span class="mock-badge" style="background:#E8F5E9;color:#2E7D32">Aprobado</span></td><td>25/Mar</td></tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+
+<!-- MOCKUP 2: Crear proposal -->
+<h3 class="stitle2">4.2 — Crear / editar proposal</h3>
+<div class="mockup">
+<div class="mockup-title">Pantalla: nuevo proposal — paso 1 (datos generales)</div>
+<div class="mock-bar">
+<div class="mock-dot"></div><div class="mock-dot"></div><div class="mock-dot"></div>
+<span class="mock-url">app.greenery.com/proposals/new</span>
+</div>
+<div class="mock-body">
+<div class="mock-nav">
+<span class="mock-tab active">1. Datos generales</span>
+<span class="mock-tab">2. Productos</span>
+<span class="mock-tab">3. Rotaciones</span>
+<span class="mock-tab">4. Resumen / GATS</span>
+<span class="mock-tab">5. Fotos</span>
+<span class="mock-tab">6. Enviar</span>
+</div>
+<div style="padding:16px 0">
+<div class="mock-grid mock-grid-2">
+<div class="mock-form-group">
+<div class="mock-label">Cliente *</div>
+<select class="mock-select" style="width:100%"><option>Seleccionar cliente existente...</option></select>
+<div style="font-size:11px;color:var(--tm);margin-top:4px">O <a href="#" style="color:#1565C0">crear cliente nuevo</a></div>
+</div>
+<div class="mock-form-group">
+<div class="mock-label">Locación *</div>
+<select class="mock-select" style="width:100%"><option>Seleccionar locación...</option></select>
+</div>
+</div>
+<div class="mock-grid mock-grid-2" style="margin-top:8px">
+<div class="mock-form-group">
+<div class="mock-label">Tipo de venta *</div>
+<select class="mock-select" style="width:100%"><option>Compra directa</option><option>Leasing (24 meses)</option><option>Leasing (36 meses)</option><option>Precio fijo (contrato)</option></select>
+</div>
+<div class="mock-form-group">
+<div class="mock-label">Creado por</div>
+<input class="mock-input" value="Cindy" disabled />
+</div>
+</div>
+<div style="margin-top:16px;display:flex;gap:8px;justify-content:flex-end">
+<span class="mock-btn mock-btn-s">Cancelar</span>
+<span class="mock-btn mock-btn-p">Siguiente: Productos →</span>
+</div>
+</div>
+</div>
+</div>
+
+<!-- MOCKUP 3: Agregar productos -->
+<div class="mockup" style="margin-top:16px">
+<div class="mockup-title">Pantalla: nuevo proposal — paso 2 (productos)</div>
+<div class="mock-bar">
+<div class="mock-dot"></div><div class="mock-dot"></div><div class="mock-dot"></div>
+<span class="mock-url">app.greenery.com/proposals/new/products</span>
+</div>
+<div class="mock-body">
+<div class="mock-nav">
+<span class="mock-tab">1. Datos generales</span>
+<span class="mock-tab active">2. Productos</span>
+<span class="mock-tab">3. Rotaciones</span>
+<span class="mock-tab">4. Resumen / GATS</span>
+<span class="mock-tab">5. Fotos</span>
+<span class="mock-tab">6. Enviar</span>
+</div>
+<div style="padding:16px 0">
+<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">
+<strong style="color:var(--gd)">Líneas del proposal</strong>
+<span class="mock-btn mock-btn-p">+ Agregar línea</span>
+</div>
+<div style="background:var(--bg);border:1px solid var(--bl);border-radius:8px;padding:14px;margin-bottom:12px">
+<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px">
+<strong style="font-size:13px;color:var(--gd)">Línea 1 — Restaurante</strong>
+<span style="font-size:11px;color:var(--tm)">Subtotal: <strong style="color:var(--gd)">$720.00</strong></span>
+</div>
+<div class="mock-grid mock-grid-3" style="gap:8px">
+<div><div class="mock-label">Categoría</div><select class="mock-select" style="width:100%;font-size:11px"><option>Planta verde</option></select></div>
+<div><div class="mock-label">Producto</div><select class="mock-select" style="width:100%;font-size:11px"><option>Sansevieria</option></select></div>
+<div><div class="mock-label">Tamaño</div><select class="mock-select" style="width:100%;font-size:11px"><option>10 inches</option></select></div>
+</div>
+<div class="mock-grid mock-grid-4" style="gap:8px;margin-top:8px">
+<div><div class="mock-label">Cantidad</div><input class="mock-input" value="20" style="font-size:11px"/></div>
+<div><div class="mock-label">Containers</div><input class="mock-input" value="4" style="font-size:11px"/></div>
+<div><div class="mock-label">Costo unit.</div><input class="mock-input" value="$12.00" style="font-size:11px"/></div>
+<div><div class="mock-label">Markup</div>
+<div style="display:flex;gap:4px;align-items:center">
+<select class="mock-select" style="font-size:11px;width:60px"><option>×2.5</option></select>
+<span style="font-size:10px;color:var(--tm)">IA: ×2.5</span>
+</div></div>
+</div>
+<div class="mock-grid mock-grid-2" style="gap:8px;margin-top:8px">
+<div><div class="mock-label">Garantía</div><select class="mock-select" style="width:100%;font-size:11px"><option>Garantizado (interior &lt; 6 pies)</option></select></div>
+<div><div class="mock-label">Notas para instalación</div><input class="mock-input" placeholder="Ej: cultivada al sol, plantar directo..." style="font-size:11px"/></div>
+</div>
+<div style="margin-top:8px;display:flex;gap:12px;font-size:11px;color:var(--tm)">
+<span>Venta unit.: <strong>$30.00</strong></span>
+<span>Freight (20%): <strong>$48.00</strong></span>
+<span>Total línea: <strong>$720.00</strong></span>
+<span style="color:#2E7D32">Utilidad: <strong>$432.00</strong></span>
+</div>
+</div>
+
+<div style="background:#FFF8E1;border:1px solid #FFE082;border-radius:8px;padding:14px;margin-bottom:12px">
+<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
+<strong style="font-size:13px;color:#F57F17">⚠ Rotación detectada — Línea 2</strong>
+<span style="font-size:11px;color:var(--tm)">Mensual: <strong style="color:#F57F17">$122.50</strong></span>
+</div>
+<div class="mock-grid mock-grid-3" style="gap:8px">
+<div><div class="mock-label">Producto</div><span style="font-size:12px"><strong>Bromelia 6"</strong></span></div>
+<div><div class="mock-label">Cantidad</div><span style="font-size:12px">21 unidades</span></div>
+<div><div class="mock-label">Rotación</div><select class="mock-select" style="width:100%;font-size:11px"><option>Cada 3 meses (quarterly) — 4x/año</option></select></div>
+</div>
+</div>
+
+<div style="margin-top:16px;display:flex;gap:8px;justify-content:space-between">
+<span class="mock-btn mock-btn-s">← Anterior</span>
+<div style="display:flex;gap:8px"><span class="mock-btn mock-btn-s">Guardar borrador</span><span class="mock-btn mock-btn-p">Siguiente: Rotaciones →</span></div>
+</div>
+</div>
+</div>
+</div>
+
+<!-- MOCKUP 4: Resumen GATS -->
+<h3 class="stitle2">4.3 — Resumen financiero (GATS interno)</h3>
+<div class="mockup">
+<div class="mockup-title">Pantalla: nuevo proposal — paso 4 (resumen / GATS)</div>
+<div class="mock-bar">
+<div class="mock-dot"></div><div class="mock-dot"></div><div class="mock-dot"></div>
+<span class="mock-url">app.greenery.com/proposals/new/summary</span>
+</div>
+<div class="mock-body">
+<div class="mock-nav">
+<span class="mock-tab">1. Datos generales</span>
+<span class="mock-tab">2. Productos</span>
+<span class="mock-tab">3. Rotaciones</span>
+<span class="mock-tab active">4. Resumen / GATS</span>
+<span class="mock-tab">5. Fotos</span>
+<span class="mock-tab">6. Enviar</span>
+</div>
+<div style="padding:16px 0">
+<div class="mock-grid mock-grid-2" style="margin-bottom:16px">
+<div>
+<strong style="font-size:14px;color:var(--gd)">Vista interna (GATS)</strong>
+<p style="font-size:11px;color:var(--tm)">Solo visible para Greenery, nunca se envía al cliente</p>
+<table class="mock-table" style="margin-top:8px">
+<thead><tr><th>Concepto</th><th>Costo</th><th>Venta</th><th>Utilidad</th></tr></thead>
+<tbody>
+<tr><td>Plantas</td><td>$720</td><td>$1,800</td><td style="color:#2E7D32">$1,080</td></tr>
+<tr><td>Pots / Containers</td><td>$600</td><td>$1,500</td><td style="color:#2E7D32">$900</td></tr>
+<tr><td>Materiales staging</td><td>$325</td><td>$812</td><td style="color:#2E7D32">$487</td></tr>
+<tr><td>Freight total</td><td>$375</td><td>—</td><td>—</td></tr>
+<tr style="font-weight:700;background:#E8F5E9"><td>TOTAL</td><td>$2,020</td><td>$4,112</td><td style="color:#2E7D32">$2,092</td></tr>
+</tbody>
+</table>
+<div style="margin-top:12px;font-size:12px;color:var(--tm)">
+<div>Mantenimiento mensual: <strong>$285.00</strong></div>
+<div>Rotaciones mensuales: <strong>$137.50</strong></div>
+<div>Cobro mensual total: <strong style="color:var(--gd)">$422.50</strong></div>
+<div style="margin-top:6px">Tiempo técnico por visita: <strong>45 min</strong></div>
+<div>Tiempo de instalación: <strong>4.5 horas</strong></div>
+</div>
+</div>
+<div>
+<strong style="font-size:14px;color:var(--gd)">Vista cliente (PDF)</strong>
+<p style="font-size:11px;color:var(--tm)">Lo que el cliente verá en el PDF</p>
+<div style="background:var(--bg);border:1px solid var(--bl);border-radius:8px;padding:14px;margin-top:8px">
+<div style="text-align:center;margin-bottom:12px">
+<strong style="color:var(--gd);font-size:13px">GREENERY PRODUCTIONS INC.</strong>
+<div style="font-size:11px;color:var(--tm)">Proposal PRO-2026-047</div>
+</div>
+<div style="font-size:12px">
+<div style="display:flex;justify-content:space-between;padding:4px 0;border-bottom:1px solid var(--bl)"><span>Interior plants & installation</span><span>$4,112.00</span></div>
+<div style="display:flex;justify-content:space-between;padding:4px 0;border-bottom:1px solid var(--bl)"><span>Monthly maintenance</span><span>$285.00/mo</span></div>
+<div style="display:flex;justify-content:space-between;padding:4px 0;border-bottom:1px solid var(--bl)"><span>Monthly rotations (orchids, bromeliads)</span><span>$137.50/mo</span></div>
+<div style="display:flex;justify-content:space-between;padding:6px 0;font-weight:700"><span>Total one-time</span><span>$4,112.00</span></div>
+<div style="display:flex;justify-content:space-between;padding:6px 0;font-weight:700;color:var(--gd)"><span>Total monthly</span><span>$422.50/mo</span></div>
+</div>
+<div style="text-align:center;margin-top:12px">
+<span class="mock-btn mock-btn-s" style="font-size:11px">Vista previa PDF</span>
+</div>
+</div>
+</div>
+</div>
+<div style="margin-top:16px;display:flex;gap:8px;justify-content:flex-end">
+<span class="mock-btn mock-btn-s">← Anterior</span>
+<span class="mock-btn mock-btn-p">Siguiente: Fotos →</span>
+</div>
+</div>
+</div>
+</div>
+
+<!-- MOCKUP 5: Detalle de proposal aprobado -->
+<h3 class="stitle2">4.4 — Detalle de proposal aprobado (vista post-aprobación)</h3>
+<div class="mockup">
+<div class="mockup-title">Pantalla: proposal aprobado — acciones disponibles</div>
+<div class="mock-bar">
+<div class="mock-dot"></div><div class="mock-dot"></div><div class="mock-dot"></div>
+<span class="mock-url">app.greenery.com/proposals/PRO-2026-047</span>
+</div>
+<div class="mock-body">
+<div style="display:flex;justify-content:space-between;align-items:center;padding-bottom:12px;border-bottom:1px solid #EEE">
+<div>
+<strong style="font-size:16px;color:var(--gd)">PRO-2026-047 — Hilton Bonnet Creek</strong>
+<div style="font-size:12px;color:var(--tm)">Lobby principal | Compra directa | Aprobado 02/Abr/2026</div>
+</div>
+<span class="mock-badge" style="background:#E8F5E9;color:#2E7D32;font-size:13px;padding:6px 16px">Aprobado</span>
+</div>
+<div style="padding:16px 0">
+<strong style="font-size:13px;color:var(--gd)">Acciones post-aprobación</strong>
+<div class="mock-grid mock-grid-2" style="margin-top:10px">
+<div style="background:var(--bg);border:1px solid var(--bl);border-radius:8px;padding:14px">
+<strong style="font-size:12px;color:var(--gd)">Orden de compra</strong>
+<div style="font-size:11px;color:var(--tm);margin:4px 0">Generar doc. maquillado para Tony</div>
+<span class="mock-btn mock-btn-p" style="font-size:11px;margin-top:6px">Generar OC → M04</span>
+</div>
+<div style="background:var(--bg);border:1px solid var(--bl);border-radius:8px;padding:14px">
+<strong style="font-size:12px;color:var(--gd)">Scheduling</strong>
+<div style="font-size:11px;color:var(--tm);margin:4px 0">Asignar ruta de instalación</div>
+<span class="mock-btn mock-btn-p" style="font-size:11px;margin-top:6px">Crear ruta → M06</span>
+</div>
+<div style="background:var(--bg);border:1px solid var(--bl);border-radius:8px;padding:14px">
+<strong style="font-size:12px;color:var(--gd)">Presupuesto</strong>
+<div style="font-size:11px;color:var(--tm);margin:4px 0">Registrar GATS como presupuesto</div>
+<span class="mock-btn mock-btn-s" style="font-size:11px;margin-top:6px">Registrado automáticamente</span>
+</div>
+<div style="background:var(--bg);border:1px solid var(--bl);border-radius:8px;padding:14px">
+<strong style="font-size:12px;color:var(--gd)">QuickBooks</strong>
+<div style="font-size:11px;color:var(--tm);margin:4px 0">Configurar invoice mensual</div>
+<span class="mock-btn mock-btn-p" style="font-size:11px;margin-top:6px">Sincronizar QB</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+</div>
+
+</div>
+
+<div class="ftr">
+<div class="ftr-l"><strong>SNAPPIFFY</strong> — Your App in a Snap<br>manuelferrer@snappiffy.com | +1 (614) 557-2284 | www.snappiffy.com</div>
+<div class="ftr-r">GRN-PLAN-2026-001 v1.0<br>Documento confidencial — Greenery Productions Inc.</div>
+</div>
+</div>
+</body>
+</html>
